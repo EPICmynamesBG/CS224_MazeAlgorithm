@@ -1,4 +1,4 @@
-package cs230.mazeSolution;
+package cs224.mazeSolution;
 
 public class temp {
 

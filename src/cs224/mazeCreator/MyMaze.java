@@ -1,4 +1,4 @@
-package cs230.mazeCreator;
+package cs224.mazeCreator;
 
 import java.util.ArrayList;
 import java.util.Collections;
