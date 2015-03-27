@@ -325,9 +325,9 @@ public class MyMaze {
   
   // run it
   public static void main(String[] args) {
-      String fileOutputPath = "/Users/brandongroff/Desktop/";
+      String fileOutputPath = ""; //leaving blank will place in project folder
 	  MyMaze maze = new MyMaze(20);
-      //maze.solve();
+      //maze.solve(); //uses A* algorithm!!
       //System.out.print(maze);
       printMazeToTextFile(maze.toString(), fileOutputPath);
   }
