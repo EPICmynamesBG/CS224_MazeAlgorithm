@@ -1,5 +1,6 @@
 package cs224.mazeCreator;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -253,10 +254,10 @@ public class MyMaze {
               Cell current = getCell(x, y);
               int gridX = x * 4 + 2, gridY = y * 2 + 1;
               if (current.inPath) {
-                  grid[gridX][gridY] = pathChar;
+                  grid[gridX][gridY] = pathChar; //was pathChar
                   if (current.isCellBelowNeighbor())
                       if (getCell(x, y + 1).inPath) {
-                          grid[gridX][gridY + 1] = pathChar;
+                          grid[gridX][gridY + 1] = pathChar; //was pathChar
                           grid[gridX + 1][gridY + 1] = backChar;
                           grid[gridX - 1][gridY + 1] = backChar;
                       } else {
@@ -266,9 +267,9 @@ public class MyMaze {
                       }
                   if (current.isCellRightNeighbor())
                       if (getCell(x + 1, y).inPath) {
-                          grid[gridX + 2][gridY] = pathChar;
-                          grid[gridX + 1][gridY] = pathChar;
-                          grid[gridX + 3][gridY] = pathChar;
+                          grid[gridX + 2][gridY] = pathChar; //was pathChar
+                          grid[gridX + 1][gridY] = pathChar; //was pathChar
+                          grid[gridX + 3][gridY] = pathChar; //was pathChar
                       } else {
                           grid[gridX + 2][gridY] = cellChar;
                           grid[gridX + 1][gridY] = cellChar;
@@ -309,10 +310,25 @@ public class MyMaze {
       return output;
   }
 
+  public static void printMazeToTextFile(String maze, String filePath){
+	  try {
+	      PrintStream out = new PrintStream(new FileOutputStream(
+	    		  filePath+"OutFile.txt"));
+	      out.println(maze);
+
+	      out.close();
+
+	    } catch (FileNotFoundException e) {
+	      e.printStackTrace();
+	    }
+  }
+  
   // run it
   public static void main(String[] args) {
-      MyMaze maze = new MyMaze(20);
-      maze.solve();
-      System.out.print(maze);
+      String fileOutputPath = "/Users/brandongroff/Desktop/";
+	  MyMaze maze = new MyMaze(20);
+      //maze.solve();
+      //System.out.print(maze);
+      printMazeToTextFile(maze.toString(), fileOutputPath);
   }
 }
