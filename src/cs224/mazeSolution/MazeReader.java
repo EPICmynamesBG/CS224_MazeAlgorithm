@@ -21,7 +21,7 @@ public class MazeReader {
 	    } finally {
 	        scanner.close();
 	    }
-	    /* Uncomment to view maze in console
+	    //Uncomment to view maze in console
 	    System.out.println("start");
 	    for(int i = 0; i < 41; i++){
 	    	for(int j = 0; j < 81; j++){
@@ -30,7 +30,7 @@ public class MazeReader {
 	    	System.out.println();
 	    }
 	    System.out.println("end");
-	    */
+	   
 		return maze;
 	}
 	
