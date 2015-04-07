@@ -11,7 +11,7 @@ public class MazeReader {
 	public static int[][] readFile(String filePath) throws IOException{
 		File file = new File(filePath);
 	    Scanner scanner = new Scanner(file);
-	    int y=0;
+	    int y = 0;
 	    try {
 	        while(scanner.hasNextLine()) { 
 	        	String line = scanner.nextLine();

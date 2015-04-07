@@ -2,62 +2,45 @@ package cs224.mazeSolution;
 
 import java.util.ArrayList;
 
-
-
 public class MazeSolver {
 	
 	public static int[][] uneditedMaze;
 	
 	public static void solve(int[][] maze) {
 		uneditedMaze = maze;
-		// TODO Auto-generated method stub
-		Coor start = new Coor(1,1);
-		Coor end = new Coor(39, 79);
+		Coordinate start = new Coordinate(1,1);
+		Coordinate end = new Coordinate(39, 79);
 		//Start index: maze[1][1]
 		//End index: maze[39][79]
-		ArrayList<Coor> visitedNodes = new ArrayList<Coor>();
-		ArrayList<Coor> nodesToVisit = new ArrayList<Coor>();
-		ArrayList<Coor> navigatedNodes = new ArrayList<Coor>();
+		ArrayList<Coordinate> visitedNodes = new ArrayList<Coordinate>();
+		ArrayList<Coordinate> nodesToVisit = new ArrayList<Coordinate>();
+		ArrayList<Coordinate> navigatedNodes = new ArrayList<Coordinate>();
 		nodesToVisit.add(0, start);
 		
 		int currentScore = 0;
 		int finalScore = currentScore; // + heuristic_cost_estimate(start, goal);
 		
+		Coordinate goal = new Coordinate(39, 79);
+		
 		while (!nodesToVisit.isEmpty()){
+			Coordinate currentNode = nodesToVisit.get(0);
+			if (currentNode.equals(goal)){
+//				return reconstructPath(navigatedNodes, goal);
+			}
+			nodesToVisit.remove(currentNode);
+			visitedNodes.add(currentNode);
 			
-			
+//			for (){}
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	private static class Coor{
-		private int x;
-		private int y;
-		
-		public Coor(int x, int y){
-			this.x = x;
-			this.y = y;
+	public static ArrayList<Coordinate> reconstructPath(ArrayList<Coordinate> navigatedNodes, Coordinate current){
+		ArrayList <Coordinate> totalPath = new ArrayList<Coordinate>();
+		totalPath.add(current);
+		while (navigatedNodes.contains(current)){
+//			current = navigatedNodes.get();
+			totalPath.add(current);
 		}
-		
-		public int[] getCoor(){
-			int[] result = {this.x , this.y };
-			return result;
-		}
-		
-		public int getMazeIntAtCoor(int[][] maze){
-			
-			return maze[this.x][this.y];
-		}
-		
-		public String getCoorAsString(){
-			return "("+this.x+", "+this.y+")";
-		}
-		
+		return totalPath;
 	}
-		
 }

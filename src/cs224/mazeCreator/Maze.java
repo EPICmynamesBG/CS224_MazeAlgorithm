@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
 
-public class MyMaze {
+public class Maze {
   private int dimensionX, dimensionY; // dimension of maze
   private int gridDimensionX, gridDimensionY; // dimension of output grid
   private char[][] grid; // output grid
@@ -14,12 +14,11 @@ public class MyMaze {
   private Random random = new Random(); // The random object
 
   // initialize with x and y the same
-  public MyMaze(int aDimension) {
-      // Initialize
+  public Maze(int aDimension) {
       this(aDimension, aDimension);
   }
   // constructor
-  public MyMaze(int xDimension, int yDimension) {
+  public Maze(int xDimension, int yDimension) {
       dimensionX = xDimension;
       dimensionY = yDimension;
       gridDimensionX = xDimension * 4 + 1;
@@ -326,7 +325,7 @@ public class MyMaze {
   // run it
   public static void main(String[] args) {
       String fileOutputPath = ""; //leaving blank will place in project folder
-	  MyMaze maze = new MyMaze(20);
+	  Maze maze = new Maze(20);
       //maze.solve(); //uses A* algorithm!!
       //System.out.print(maze);
       printMazeToTextFile(maze.toString(), fileOutputPath);
