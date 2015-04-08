@@ -19,4 +19,4 @@ A repository for the CS224 Algorithms project.
 <p>* Disclaimer: this code was found publicly online and was modified for our uses. We do not claim rights over creating it.</p>
 
 <h4> Contributing Developers </h4>
-<strong><a href="https://github.com/EPICmynamesBG">EPICmynamesBG</a>, <a href="https://github.com/taraewilliams">taraewilliams</a>, <a href="https://github.com/madkins91">madkins91</a>, <a href="https://github.com/mebays">mebays</a>, <a href="https://github.com/mspivey">mspivey</a></strong>
+<strong><a href="https://github.com/EPICmynamesBG">EPICmynamesBG</a>, <a href="https://github.com/taraewilliams">taraewilliams</a>, <a href="https://github.com/madkins91">madkins91</a>, <a href="https://github.com/mebays">mebays</a>, <a href="https://github.com/mlspivey">mlspivey</a></strong>
