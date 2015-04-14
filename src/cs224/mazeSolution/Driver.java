@@ -11,7 +11,8 @@ public class Driver {
 		// TODO Auto-generated method stub
 		String filePath = "OutFile.txt"; //for text file in project directory
 		int[][] maze = MazeReader.readFile(filePath);
-		MazeSolver.solve(maze);
+		MazeSolver solver = new MazeSolver();
+		solver.solve(maze);
 	}
 
 }

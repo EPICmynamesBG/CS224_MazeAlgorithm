@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Coordinate {
 	
 	int x, y, value, heuristicCost;
-    ArrayList<Coordinate> neighbors = new ArrayList<>();
+    private ArrayList<Coordinate> neighbors = new ArrayList<>();
     boolean visited = false;
     Coordinate parent = null;
     boolean inPath = false;
@@ -38,6 +38,39 @@ public class Coordinate {
 		int[] result = {this.x , this.y };
 		return result;
 	}
+	
+	public Integer getXCoordinate(){
+		return this.x;
+	}
+	
+	public Integer getYCoordinate(){
+		return this.y;
+	}
+	
+	public Coordinate getLeftCoordinate(){
+		return new Coordinate (this.x - 1, this.y);	
+	}
+	
+	public Coordinate getRightCoordinate(){
+		return new Coordinate (this.x + 1, this.y);
+	}
+	
+	public Coordinate getAboveCoordinate(){
+		return new Coordinate (this.x, this.y - 1);	
+	}
+	
+	public Coordinate getBelowCoordinate(){
+		return new Coordinate (this.x, this.y + 1);	
+	}
+	
+	public ArrayList<Coordinate> getNeighborNodes(){
+		ArrayList<Coordinate> neighborNodes = new ArrayList<>();
+		neighborNodes.add(this.getLeftCoordinate());
+		neighborNodes.add(this.getRightCoordinate());
+		neighborNodes.add(this.getAboveCoordinate());
+		neighborNodes.add(this.getBelowCoordinate());
+		return neighborNodes;
+	}
 		
 	public int getMazeIntAtCoor(int[][] maze){	
 		return maze[this.x][this.y];
@@ -59,21 +92,21 @@ public class Coordinate {
 		return this.heuristicCost;
 	}
 	
-    void addNeighbor(Coordinate other) {
-        if (!this.neighbors.contains(other)) { // avoid duplicates
-            this.neighbors.add(other);
+    public void addNeighbor(Coordinate other) {
+        if (!this.getNeighbors().contains(other)) { // avoid duplicates
+            this.getNeighbors().add(other);
         }
-        if (!other.neighbors.contains(this)) { // avoid duplicates
-            other.neighbors.add(this);
+        if (!other.getNeighbors().contains(this)) { // avoid duplicates
+            other.getNeighbors().add(this);
         }
     }
     
-    boolean isCoordinateBelowNeighbor() {
-        return this.neighbors.contains(new Coordinate(this.x, this.y + 1));
+    public boolean isCoordinateBelowNeighbor() {
+        return this.getNeighbors().contains(new Coordinate(this.x, this.y + 1));
     }
     
-    boolean isCoordinateRightNeighbor() {
-        return this.neighbors.contains(new Coordinate(this.x + 1, this.y));
+    public boolean isCoordinateRightNeighbor() {
+        return this.getNeighbors().contains(new Coordinate(this.x + 1, this.y));
     }
     
     @Override
@@ -92,4 +125,29 @@ public class Coordinate {
     public int hashCode() {
         return this.x + this.y * 256;
     }
+    
+	public int heuristicCostEstimate(Coordinate goal, int[][] uneditedMaze){
+		int manhattanDistanceSum = 0;
+	    for (int x = 0; x < 81; x++) // x-dimension, traversing rows (i)
+	        for (int y = 0; y < 41; y++) { // y-dimension, traversing cols (j)
+	            int value = uneditedMaze[x][y]; 
+	            if (value != 0) { // we don't compute MD for element 0
+	                int targetX = (value - 1) / 81; // expected x-coordinate (row)
+	                int targetY = (value - 1) % 41; // expected y-coordinate (col)
+	                int dx = x - targetX; // x-distance to expected coordinate
+	                int dy = y - targetY; // y-distance to expected coordinate
+	                manhattanDistanceSum += Math.abs(dx) + Math.abs(dy); 
+	            } 
+	        }
+	    int manhattanDistance = manhattanDistanceSum;
+		return manhattanDistance;
+	}
+
+	public ArrayList<Coordinate> getNeighbors() {
+		return neighbors;
+	}
+
+	public void setNeighbors(ArrayList<Coordinate> neighbors) {
+		this.neighbors = neighbors;
+	}
 }
