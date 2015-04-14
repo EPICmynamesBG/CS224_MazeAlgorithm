@@ -4,15 +4,16 @@ import java.util.ArrayList;
 
 public class Coordinate {
 	
-	int x, y, value, heuristicCost;
+	private int x, y, value, heuristicCost;
     private ArrayList<Coordinate> neighbors = new ArrayList<>();
-    boolean visited = false;
-    Coordinate parent = null;
-    boolean inPath = false;
-    double travelled;
-    double projectedDist;
-    boolean wall = true;
-    boolean open = true;
+    private boolean visited = false;
+    private Coordinate parent = null;
+    private boolean inPath = false;
+    private double travelled;
+    private double projectedDist;
+    private boolean wall = true;
+    private boolean open = true;
+    public Integer distanceCost = 0;
 		
     Coordinate(int x, int y, int value, boolean isWall) {
         this.x = x;
@@ -70,6 +71,14 @@ public class Coordinate {
 		neighborNodes.add(this.getAboveCoordinate());
 		neighborNodes.add(this.getBelowCoordinate());
 		return neighborNodes;
+	}
+	
+	public Integer getDistanceCost(){
+		return this.distanceCost;
+	}
+	
+	public void setDistanceCost(Integer distanceCost){
+		this.distanceCost = distanceCost;
 	}
 		
 	public int getMazeIntAtCoor(int[][] maze){	

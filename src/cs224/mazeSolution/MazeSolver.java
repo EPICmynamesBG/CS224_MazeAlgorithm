@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import cs224.mazeSolution.Coordinate;
 
 public class MazeSolver {
-	private int dimensionX, dimensionY; // dimension of maze
-	private Coordinate[][] coordinates;
+//	private int dimensionX, dimensionY; // dimension of maze
+//	private Coordinate[][] coordinates;
 	private int[][] uneditedMaze;
 	private ArrayList<Coordinate> visitedNodes = new ArrayList<Coordinate>();
 	private ArrayList<Coordinate> nodesToVisit = new ArrayList<Coordinate>();
 	private ArrayList<Coordinate> navigatedNodes = new ArrayList<Coordinate>();
+	private final Integer DISTANCE_COST = 10;
 	
 	public void solve(int[][] maze) {
 		uneditedMaze = maze;
@@ -18,12 +19,13 @@ public class MazeSolver {
 	
 		nodesToVisit.add(0, startingPoint);
 		
-		int currentScore = 0;
+		Integer currentDistanceCost = 0;
+		Integer currentHeuristicCost = currentDistanceCost + startingPoint.heuristicCostEstimate(endingPoint, uneditedMaze);
 		
 		while (!nodesToVisit.isEmpty()){
 			Coordinate currentNode = nodesToVisit.get(0);
-			int heuristicCost = currentNode.heuristicCostEstimate(endingPoint, uneditedMaze);
-			currentNode.setHeuristicCost(heuristicCost);
+			int heuristicCostScore = currentNode.heuristicCostEstimate(endingPoint, uneditedMaze);
+			currentNode.setHeuristicCost(heuristicCostScore);
 			
 			if (currentNode.equals(endingPoint)){
 //				return reconstructPath(navigatedNodes, goal);
@@ -36,8 +38,12 @@ public class MazeSolver {
 				if (visitedNodes.contains(neighbor)){
 					continue;
 				}
-				if (!nodesToVisit.contains(neighbor)){
-					
+				
+				Integer tentativeCurrentDistanceCost = currentDistanceCost + DISTANCE_COST;
+				
+				if (!nodesToVisit.contains(neighbor) || tentativeCurrentDistanceCost < neighbor.getDistanceCost()){
+					navigatedNodes.add(currentNode);
+					neighbor.setDistanceCost(tentativeCurrentDistanceCost);
 					if(!nodesToVisit.contains(neighbor)){
 						nodesToVisit.add(neighbor);
 					}
