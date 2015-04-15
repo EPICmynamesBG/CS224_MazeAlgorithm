@@ -6,33 +6,24 @@ public class Coordinate {
 	
 	private int x, y, value, heuristicCost;
     private ArrayList<Coordinate> neighbors = new ArrayList<>();
-//    private boolean visited = false;
-//    private Coordinate parent = null;
-//    private boolean inPath = false;
-//    private double travelled;
-//    private double projectedDist;
-    private boolean wall = true;
-//    private boolean open = true;
     public Integer distanceCost = 0;
 		
-    Coordinate(int x, int y, int value, boolean isWall) {
+    Coordinate(int x, int y, int value) {
         this.x = x;
         this.y = y;
         this.value = value;
         this.heuristicCost = 0;
-        this.wall = isWall;
     }
     
-    Coordinate(int x, int y, int value, int heuristicCost, boolean isWall){
+    Coordinate(int x, int y, int value, int heuristicCost){
     	this.x = x;
         this.y = y;
         this.value = value;
         this.heuristicCost = heuristicCost;
-        this.wall = isWall;
     }
     
 	public Coordinate(int x, int y){
-		this(x, y, 0, 0, true);
+		this(x, y, 0, 0);
 	}
 	
 	public int[] getCoor(){
@@ -117,14 +108,6 @@ public class Coordinate {
             other.getNeighbors().add(this);
         }
     }
-//    
-//    public boolean isCoordinateBelowNeighbor() {
-//        return this.getNeighbors().contains(new Coordinate(this.x, this.y + 1));
-//    }
-//    
-//    public boolean isCoordinateRightNeighbor() {
-//        return this.getNeighbors().contains(new Coordinate(this.x + 1, this.y));
-//    }
     
     @Override
     public String toString() {
