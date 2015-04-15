@@ -64,12 +64,20 @@ public class Coordinate {
 		return new Coordinate (this.x, this.y + 1);	
 	}
 	
-	public ArrayList<Coordinate> getNeighborNodes(){
+	public ArrayList<Coordinate> getNeighborNodes(Maze maze){
 		ArrayList<Coordinate> neighborNodes = new ArrayList<>();
-		neighborNodes.add(this.getLeftCoordinate());
-		neighborNodes.add(this.getRightCoordinate());
-		neighborNodes.add(this.getAboveCoordinate());
-		neighborNodes.add(this.getBelowCoordinate());
+		if (maze.getMazeValue(this.getLeftCoordinate()) != 1){
+			neighborNodes.add(this.getLeftCoordinate());	
+		}
+		if (maze.getMazeValue(this.getRightCoordinate()) != 1){
+			neighborNodes.add(this.getRightCoordinate());
+		}
+		if (maze.getMazeValue(this.getAboveCoordinate()) != 1){
+			neighborNodes.add(this.getAboveCoordinate());
+		}
+		if (maze.getMazeValue(this.getBelowCoordinate()) != 1){
+			neighborNodes.add(this.getBelowCoordinate());
+		}
 		return neighborNodes;
 	}
 	

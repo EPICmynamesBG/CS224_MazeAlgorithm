@@ -20,33 +20,41 @@ public class MazeSolver {
 		Integer currentDistanceCost = 0;
 		Integer currentHeuristicCost = currentDistanceCost + startingPoint.heuristicCostEstimate(endingPoint, uneditedMaze);
 		
-		while (!nodesToVisit.isEmpty()){
+		Integer count = 0;
+		while (count < 5){
 			Coordinate currentNode = nodesToVisit.get(0);
 			int heuristicCostScore = currentNode.heuristicCostEstimate(endingPoint, uneditedMaze);
 			currentNode.setHeuristicCost(heuristicCostScore);
 			
 			if (currentNode.equals(endingPoint)){
+				nodesToVisit.clear();
 //				return reconstructPath(navigatedNodes, goal);
 			}
 			nodesToVisit.remove(currentNode);
 			visitedNodes.add(currentNode);
 			
-			ArrayList<Coordinate> neighborNodes = currentNode.getNeighborNodes();
+			ArrayList<Coordinate> neighborNodes = currentNode.getNeighborNodes(uneditedMaze);
+			
 			for (Coordinate neighbor : neighborNodes){
 				if (visitedNodes.contains(neighbor)){
+					System.out.println("hello");
 					continue;
 				}
-				
 				Integer tentativeCurrentDistanceCost = currentDistanceCost + DISTANCE_COST;
 				
 				if (!nodesToVisit.contains(neighbor) || tentativeCurrentDistanceCost < neighbor.getDistanceCost()){
-					navigatedNodes.add(currentNode);
 					neighbor.setDistanceCost(tentativeCurrentDistanceCost);
 					if(!nodesToVisit.contains(neighbor)){
 						nodesToVisit.add(neighbor);
 					}
 				}
 			}
+			navigatedNodes.add(currentNode);
+			System.out.println(nodesToVisit + " Nodes to Visit");
+			System.out.println(navigatedNodes + " Navigated Nodes");
+			System.out.println(visitedNodes + " Visited Nodes");
+			count++;
+//			nodesToVisit.clear();
 		}
 	}
 	
