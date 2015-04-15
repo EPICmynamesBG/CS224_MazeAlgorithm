@@ -8,11 +8,12 @@ import cs224.mazeSolution.MazeSolver;
 public class Driver {
 
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-		String filePath = "OutFile.txt"; //for text file in project directory
-		int[][] maze = MazeReader.readFile(filePath);
+		String filePath = "OutFile.txt";
+		
+		MazeReader reader = new MazeReader();
+		Maze maze = reader.readFile(filePath);
 		MazeSolver solver = new MazeSolver();
-		solver.solve(maze);
+//		solver.solve(maze);
 	}
 
 }

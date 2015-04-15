@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class MazeReader {
 	
-	static int[][] maze = new int[41][81]; 
-	
-	public static int[][] readFile(String filePath) throws IOException{
+	private Maze maze = new Maze();
+		
+	public Maze readFile(String filePath) throws IOException{
 		File file = new File(filePath);
 	    Scanner scanner = new Scanner(file);
 	    int y = 0;
@@ -16,33 +16,26 @@ public class MazeReader {
 	        while(scanner.hasNextLine()) { 
 	        	String line = scanner.nextLine();
 	        	parseLine(y, line);
-	            y+=1;
+	        	y++;
 	        }
 	    } finally {
 	        scanner.close();
 	    }
-	    //Uncomment to view maze in console
-	    System.out.println("start");
-	    for(int i = 0; i < 41; i++){
-	    	for(int j = 0; j < 81; j++){
-	    		System.out.print(maze[i][j]);
-	    	}
-	    	System.out.println();
-	    }
-	    System.out.println("end");
-	   
+	    System.out.println(maze.toString());
 		return maze;
 	}
 	
-	private static void parseLine(int lineNumber, String s){
-		for(int i = 0; i < s.length(); i++){
+	private void parseLine(int lineNumber, String s){
+		for (int i = 0; i < s.length(); i++){
 			char c = s.charAt(i);
-			if(c =='X'){
-				maze[lineNumber][i] = 1;
+			Coordinate coordinate = new Coordinate(lineNumber, i);
+			if (c == 'X'){
+				Integer value = 1;
+				maze.addValue(coordinate, value);
 			}else{
-				maze[lineNumber][i] = 0;
+				Integer value = 0;
+				maze.addValue(coordinate, value);
 			}
 		}
 	}
-	
 }

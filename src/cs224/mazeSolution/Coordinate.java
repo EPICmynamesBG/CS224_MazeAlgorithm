@@ -135,7 +135,7 @@ public class Coordinate {
         return this.x + this.y * 256;
     }
     
-	public int heuristicCostEstimate(Coordinate goal, int[][] uneditedMaze){
+	public int heuristicCostEstimate(Coordinate goal, Maze uneditedMaze){
 		int manhattanDistanceSum = 0;
 	    for (int x = 0; x < 81; x++) // x-dimension, traversing rows (i)
 	        for (int y = 0; y < 41; y++) { // y-dimension, traversing cols (j)

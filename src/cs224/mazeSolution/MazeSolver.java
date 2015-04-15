@@ -6,13 +6,13 @@ import cs224.mazeSolution.Coordinate;
 public class MazeSolver {
 //	private int dimensionX, dimensionY; // dimension of maze
 //	private Coordinate[][] coordinates;
-	private int[][] uneditedMaze;
+	private Maze uneditedMaze;
 	private ArrayList<Coordinate> visitedNodes = new ArrayList<Coordinate>();
 	private ArrayList<Coordinate> nodesToVisit = new ArrayList<Coordinate>();
 	private ArrayList<Coordinate> navigatedNodes = new ArrayList<Coordinate>();
 	private final Integer DISTANCE_COST = 10;
 	
-	public void solve(int[][] maze) {
+	public void solve(Maze maze) {
 		uneditedMaze = maze;
 		Coordinate startingPoint = new Coordinate(1,1);
 		Coordinate endingPoint = new Coordinate(79,39);
