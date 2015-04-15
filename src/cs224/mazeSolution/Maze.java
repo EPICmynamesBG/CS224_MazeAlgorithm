@@ -1,8 +1,9 @@
 package cs224.mazeSolution;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 
-public class Maze{
+public class Maze implements Iterable<Coordinate>{
 	
 	LinkedHashMap<Coordinate, Integer> maze = new LinkedHashMap<>();
 	
@@ -24,5 +25,19 @@ public class Maze{
 	    }
 	    mazeString += "\nend";
 	    return mazeString;
+	}
+	
+	public Integer getMazeValue(Coordinate coordinate){
+		Integer value = maze.get(coordinate);
+		return value;
+	}
+
+	public Integer getMazeSize(){
+		return maze.size();
+	}
+	
+	@Override
+	public Iterator<Coordinate> iterator() {
+		return maze.keySet().iterator();
 	}
 }

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import cs224.mazeSolution.Coordinate;
 
 public class MazeSolver {
-//	private int dimensionX, dimensionY; // dimension of maze
-//	private Coordinate[][] coordinates;
 	private Maze uneditedMaze;
 	private ArrayList<Coordinate> visitedNodes = new ArrayList<Coordinate>();
 	private ArrayList<Coordinate> nodesToVisit = new ArrayList<Coordinate>();

@@ -6,13 +6,13 @@ public class Coordinate {
 	
 	private int x, y, value, heuristicCost;
     private ArrayList<Coordinate> neighbors = new ArrayList<>();
-    private boolean visited = false;
-    private Coordinate parent = null;
-    private boolean inPath = false;
-    private double travelled;
-    private double projectedDist;
+//    private boolean visited = false;
+//    private Coordinate parent = null;
+//    private boolean inPath = false;
+//    private double travelled;
+//    private double projectedDist;
     private boolean wall = true;
-    private boolean open = true;
+//    private boolean open = true;
     public Integer distanceCost = 0;
 		
     Coordinate(int x, int y, int value, boolean isWall) {
@@ -109,14 +109,14 @@ public class Coordinate {
             other.getNeighbors().add(this);
         }
     }
-    
-    public boolean isCoordinateBelowNeighbor() {
-        return this.getNeighbors().contains(new Coordinate(this.x, this.y + 1));
-    }
-    
-    public boolean isCoordinateRightNeighbor() {
-        return this.getNeighbors().contains(new Coordinate(this.x + 1, this.y));
-    }
+//    
+//    public boolean isCoordinateBelowNeighbor() {
+//        return this.getNeighbors().contains(new Coordinate(this.x, this.y + 1));
+//    }
+//    
+//    public boolean isCoordinateRightNeighbor() {
+//        return this.getNeighbors().contains(new Coordinate(this.x + 1, this.y));
+//    }
     
     @Override
     public String toString() {
@@ -137,18 +137,20 @@ public class Coordinate {
     
 	public int heuristicCostEstimate(Coordinate goal, Maze uneditedMaze){
 		int manhattanDistanceSum = 0;
-	    for (int x = 0; x < 81; x++) // x-dimension, traversing rows (i)
-	        for (int y = 0; y < 41; y++) { // y-dimension, traversing cols (j)
-	            int value = uneditedMaze[x][y]; 
-	            if (value != 0) { // we don't compute MD for element 0
-	                int targetX = (value - 1) / 81; // expected x-coordinate (row)
-	                int targetY = (value - 1) % 41; // expected y-coordinate (col)
-	                int dx = x - targetX; // x-distance to expected coordinate
-	                int dy = y - targetY; // y-distance to expected coordinate
-	                manhattanDistanceSum += Math.abs(dx) + Math.abs(dy); 
-	            } 
-	        }
-	    int manhattanDistance = manhattanDistanceSum;
+		for (Coordinate coordinate : uneditedMaze){
+			Integer value = uneditedMaze.getMazeValue(coordinate);
+			Integer x = coordinate.getXCoordinate();
+			Integer y = coordinate.getYCoordinate();
+			
+			if (value != 0){
+				int targetX = (value - 1) / 81;
+				int targetY = (value - 1) % 41;
+				int dx = x - targetX;
+				int dy = y - targetY;
+				manhattanDistanceSum += Math.abs(dx) + Math.abs(dy);
+			}
+		}
+		int manhattanDistance = manhattanDistanceSum;
 		return manhattanDistance;
 	}
 
