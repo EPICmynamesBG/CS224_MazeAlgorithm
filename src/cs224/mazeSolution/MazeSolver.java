@@ -18,12 +18,13 @@ public class MazeSolver {
 		nodesToVisit.add(0, startingPoint);
 		
 		Integer currentDistanceCost = 0;
-		Integer currentHeuristicCost = currentDistanceCost + startingPoint.heuristicCostEstimate(endingPoint, uneditedMaze);
+		Integer currentHeuristicCost = currentDistanceCost + startingPoint.heuristicCostEstimate(endingPoint);
 		
 		Integer count = 0;
 		while (count < 5){
 			Coordinate currentNode = nodesToVisit.get(0);
-			int heuristicCostScore = currentNode.heuristicCostEstimate(endingPoint, uneditedMaze);
+			int heuristicCostScore = currentNode.heuristicCostEstimate(endingPoint);
+			System.out.println(heuristicCostScore);
 			currentNode.setHeuristicCost(heuristicCostScore);
 			
 			if (currentNode.equals(endingPoint)){
@@ -37,7 +38,6 @@ public class MazeSolver {
 			
 			for (Coordinate neighbor : neighborNodes){
 				if (visitedNodes.contains(neighbor)){
-					System.out.println("hello");
 					continue;
 				}
 				Integer tentativeCurrentDistanceCost = currentDistanceCost + DISTANCE_COST;

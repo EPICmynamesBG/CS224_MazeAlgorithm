@@ -15,6 +15,9 @@ public class Maze implements Iterable<Coordinate>{
 		Integer count = 0;
 		String mazeString = "start\n";
 		
+		for (Coordinate coordinate : maze.keySet()){
+			System.out.println(coordinate);
+		}
 	    for (Integer key : maze.values()){
 	    	if (count.equals(81)){
 	    		mazeString += "\n";

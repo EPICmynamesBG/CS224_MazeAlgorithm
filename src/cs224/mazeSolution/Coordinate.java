@@ -126,23 +126,9 @@ public class Coordinate {
         return this.x + this.y * 256;
     }
     
-	public int heuristicCostEstimate(Coordinate goal, Maze uneditedMaze){
-		int manhattanDistanceSum = 0;
-		for (Coordinate coordinate : uneditedMaze){
-			Integer value = uneditedMaze.getMazeValue(coordinate);
-			Integer x = coordinate.getXCoordinate();
-			Integer y = coordinate.getYCoordinate();
-			
-			if (value != 0){
-				int targetX = (value - 1) / 81;
-				int targetY = (value - 1) % 41;
-				int dx = x - targetX;
-				int dy = y - targetY;
-				manhattanDistanceSum += Math.abs(dx) + Math.abs(dy);
-			}
-		}
-		int manhattanDistance = manhattanDistanceSum;
-		return manhattanDistance;
+	public int heuristicCostEstimate(Coordinate goal){
+		int cost = (int) Math.sqrt(Math.pow(this.x - goal.x, 2) + Math.pow(this.y - goal.y, 2));
+		return cost;
 	}
 
 	public ArrayList<Coordinate> getNeighbors() {
