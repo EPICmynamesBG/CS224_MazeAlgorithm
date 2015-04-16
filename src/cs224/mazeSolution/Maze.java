@@ -34,6 +34,10 @@ public class Maze implements Iterable<Coordinate>{
 		Integer value = maze.get(coordinate);
 		return value;
 	}
+	
+	public boolean isMazeValue(Coordinate coordinate){
+		return maze.containsKey(coordinate);
+	}
 
 	public Integer getMazeSize(){
 		return maze.size();

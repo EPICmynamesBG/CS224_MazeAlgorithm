@@ -20,10 +20,8 @@ public class MazeSolver {
 		Integer currentDistanceCost = 0;
 		Integer currentHeuristicCost = currentDistanceCost + startingPoint.heuristicCostEstimate(endingPoint);
 		startingPoint.setHeuristicCost(currentHeuristicCost);
-		
-		Integer count = 0;
-		
-		while (count < 5){
+				
+		while (!nodesToVisit.isEmpty()){
 			
 			Integer min = 1000;
 			Coordinate minCoordinate = null;
@@ -31,15 +29,14 @@ public class MazeSolver {
 			for (Coordinate coordinate : nodesToVisit){
 				Integer cost = coordinate.getHeuristicCost();
 				if (cost < min){
+					System.out.println(cost + " cost");
 					minCoordinate = coordinate;
 					min = cost;
 				}
 			}
 			Coordinate currentNode = minCoordinate;
-//			Coordinate currentNode = nodesToVisit.get(0);
-			int heuristicCostScore = currentNode.heuristicCostEstimate(endingPoint);
-			System.out.println(heuristicCostScore);
-			currentNode.setHeuristicCost(heuristicCostScore);
+			System.out.println(currentNode);
+			System.out.println("\n");
 			
 			if (currentNode.equals(endingPoint)){
 				nodesToVisit.clear();
@@ -56,8 +53,10 @@ public class MazeSolver {
 				}
 				Integer tentativeCurrentDistanceCost = currentDistanceCost + DISTANCE_COST;
 				
-				if (!nodesToVisit.contains(neighbor) || tentativeCurrentDistanceCost < neighbor.getDistanceCost()){
-					neighbor.setDistanceCost(tentativeCurrentDistanceCost);
+				if (!nodesToVisit.contains(neighbor) || tentativeCurrentDistanceCost < neighbor.getMovementCost()){
+					neighbor.setMovementCost(tentativeCurrentDistanceCost);
+					Integer cost = neighbor.heuristicCostEstimate(endingPoint);
+					neighbor.setHeuristicCost(cost);
 					if(!nodesToVisit.contains(neighbor)){
 						nodesToVisit.add(neighbor);
 					}
@@ -67,7 +66,6 @@ public class MazeSolver {
 			System.out.println(nodesToVisit + " Nodes to Visit");
 			System.out.println(navigatedNodes + " Navigated Nodes");
 			System.out.println(visitedNodes + " Visited Nodes");
-			count++;
 //			nodesToVisit.clear();
 		}
 	}
