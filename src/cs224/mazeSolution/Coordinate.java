@@ -72,7 +72,7 @@ public class Coordinate {
 	
 	public void calculateMovementCost(Coordinate current){
 		Integer cost = current.movementCost;
-		setMovementCost(cost+10);
+		this.setMovementCost(cost + 10);
 	}
 	
 	public Integer getMovementCost(){

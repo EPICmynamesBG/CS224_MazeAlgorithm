@@ -18,15 +18,19 @@ public class MazeSolver {
 		nodesToVisit.add(0, startingPoint);
 		
 		Integer currentDistanceCost = 0;
-		Integer currentHeuristicCost = currentDistanceCost + startingPoint.heuristicCostEstimate(endingPoint);
+		Integer currentHeuristicCost = startingPoint.heuristicCostEstimate(endingPoint);
 		startingPoint.setHeuristicCost(currentHeuristicCost);
+		startingPoint.setMovementCost(0);
+		
+		System.out.println(startingPoint.getHeuristicCost());
+		System.out.println(startingPoint.getMovementCost());
 				
 		while (!nodesToVisit.isEmpty()){			
 			Integer min = 1000;
 			Coordinate minCoordinate = null;
 			
 			for (Coordinate coordinate : nodesToVisit){
-				Integer cost = coordinate.getHeuristicCost();
+				Integer cost = coordinate.getMovementCost() + coordinate.getHeuristicCost();
 				if (cost < min){
 					minCoordinate = coordinate;
 					min = cost;
@@ -36,7 +40,6 @@ public class MazeSolver {
 			
 			if (currentNode.equals(endingPoint)){
 				nodesToVisit.clear();
-//				return reconstructPath(navigatedNodes, goal);
 			}
 			nodesToVisit.remove(currentNode);
 			visitedNodes.add(currentNode);
@@ -48,19 +51,17 @@ public class MazeSolver {
 					continue;
 				}
 				neighbor.heuristicCostEstimate(endingPoint);
+				neighbor.calculateMovementCost(currentNode);
 				Integer tentativeCurrentDistanceCost = currentDistanceCost + DISTANCE_COST;
 				
 				if (!nodesToVisit.contains(neighbor) || tentativeCurrentDistanceCost < neighbor.getMovementCost()){
-//					neighbor.setMovementCost(tentativeCurrentDistanceCost);
-//					Integer cost = neighbor.heuristicCostEstimate(endingPoint);
-//					neighbor.setHeuristicCost(cost);
 					if(!nodesToVisit.contains(neighbor)){
 						nodesToVisit.add(neighbor);
 					}
 				}
 			}
 			navigatedNodes.add(currentNode);
-			System.out.println(nodesToVisit + " Nodes to Visit");
+//			System.out.println(nodesToVisit + " Nodes to Visit");
 //			System.out.println(navigatedNodes + " Navigated Nodes");
 //			System.out.println(visitedNodes + " Visited Nodes");
 //			nodesToVisit.clear();
