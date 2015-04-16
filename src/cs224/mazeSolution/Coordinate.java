@@ -7,6 +7,7 @@ public class Coordinate {
 	private int x, y, value, heuristicCost;
     private ArrayList<Coordinate> neighbors = new ArrayList<>();
     public Integer movementCost;
+    private Coordinate parent;
 		
     Coordinate(int x, int y, int value) {
         this.x = x;
@@ -14,6 +15,7 @@ public class Coordinate {
         this.value = value;
         this.heuristicCost = 0;
         this.movementCost = 0;
+        this.parent = null;
     }
     
     Coordinate(int x, int y, int value, int heuristicCost){
@@ -21,7 +23,8 @@ public class Coordinate {
         this.y = y;
         this.value = value;
         this.heuristicCost = heuristicCost;
-        this.movementCost=0;
+        this.movementCost = 0;
+        this.parent = null;
     }
     
 	public Coordinate(int x, int y){
@@ -68,6 +71,15 @@ public class Coordinate {
 			neighborNodes.add(this.getBelowCoordinate());
 		}
 		return neighborNodes;
+	}
+	
+	
+	public void setParent(Coordinate parent){
+		this.parent = parent;
+	}
+	
+	public Coordinate getParent(){
+		return this.parent;
 	}
 	
 	public void calculateMovementCost(Coordinate current){

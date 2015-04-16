@@ -13,7 +13,7 @@ public class MazeSolver {
 	public void solve(Maze maze) {
 		uneditedMaze = maze;
 		Coordinate startingPoint = new Coordinate(1,1);
-		Coordinate endingPoint = new Coordinate(79,39);
+		Coordinate endingPoint = new Coordinate(39, 79);
 	
 		nodesToVisit.add(0, startingPoint);
 		
@@ -21,13 +21,10 @@ public class MazeSolver {
 		Integer currentHeuristicCost = startingPoint.heuristicCostEstimate(endingPoint);
 		startingPoint.setHeuristicCost(currentHeuristicCost);
 		startingPoint.setMovementCost(0);
-		
-		System.out.println(startingPoint.getHeuristicCost());
-		System.out.println(startingPoint.getMovementCost());
 				
 		while (!nodesToVisit.isEmpty()){			
-			Integer min = 1000;
-			Coordinate minCoordinate = null;
+			Coordinate minCoordinate = nodesToVisit.get(0);
+			Integer min = minCoordinate.getMovementCost() + minCoordinate.getHeuristicCost();
 			
 			for (Coordinate coordinate : nodesToVisit){
 				Integer cost = coordinate.getMovementCost() + coordinate.getHeuristicCost();
@@ -39,6 +36,7 @@ public class MazeSolver {
 			Coordinate currentNode = minCoordinate;
 			
 			if (currentNode.equals(endingPoint)){
+				reconstructPath(navigatedNodes, currentNode);
 				nodesToVisit.clear();
 			}
 			nodesToVisit.remove(currentNode);
@@ -52,6 +50,7 @@ public class MazeSolver {
 				}
 				neighbor.heuristicCostEstimate(endingPoint);
 				neighbor.calculateMovementCost(currentNode);
+				neighbor.setParent(currentNode);
 				Integer tentativeCurrentDistanceCost = currentDistanceCost + DISTANCE_COST;
 				
 				if (!nodesToVisit.contains(neighbor) || tentativeCurrentDistanceCost < neighbor.getMovementCost()){
@@ -68,7 +67,7 @@ public class MazeSolver {
 		}
 	}
 	
-	public static ArrayList<Coordinate> reconstructPath(ArrayList<Coordinate> navigatedNodes, Coordinate current){
+	public ArrayList<Coordinate> reconstructPath(ArrayList<Coordinate> navigatedNodes, Coordinate current){
 		ArrayList <Coordinate> totalPath = new ArrayList<Coordinate>();
 		totalPath.add(current);
 		while (navigatedNodes.contains(current)){
