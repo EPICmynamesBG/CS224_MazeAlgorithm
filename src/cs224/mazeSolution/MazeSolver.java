@@ -53,8 +53,8 @@ public class MazeSolver {
 				}
 				Integer tentativeCurrentDistanceCost = currentDistanceCost + DISTANCE_COST;
 				
-				if (!nodesToVisit.contains(neighbor) || tentativeCurrentDistanceCost < neighbor.getDistanceCost()){
-					neighbor.setDistanceCost(tentativeCurrentDistanceCost);
+				if (!nodesToVisit.contains(neighbor) || tentativeCurrentDistanceCost < neighbor.getMovementCost()){
+					neighbor.setMovementCost(tentativeCurrentDistanceCost);
 					Integer cost = neighbor.heuristicCostEstimate(endingPoint);
 					neighbor.setHeuristicCost(cost);
 					if(!nodesToVisit.contains(neighbor)){

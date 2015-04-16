@@ -31,9 +31,9 @@ public class CoordinateTest {
 	@Test
 	public void testThatDistanceCostIsIncremented(){
 		Coordinate coordinate1 = new Coordinate(1, 1);
-		coordinate1.setDistanceCost(10);
+		coordinate1.setMovementCost(10);
 		Integer expected = 10;
-		Integer actual = coordinate1.getDistanceCost();
+		Integer actual = coordinate1.getMovementCost();
 		assertEquals(actual, expected);
 	}
 	

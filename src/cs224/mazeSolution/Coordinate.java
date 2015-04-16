@@ -1,7 +1,6 @@
 package cs224.mazeSolution;
 
 import java.util.ArrayList;
-import cs224.mazeSolution.MazeSolver;
 
 public class Coordinate {
 	
@@ -130,8 +129,6 @@ public class Coordinate {
         return this.x + this.y * 256;
     }
     
-	
-
 	public ArrayList<Coordinate> getNeighbors() {
 		return neighbors;
 	}
