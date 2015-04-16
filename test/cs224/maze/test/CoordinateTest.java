@@ -36,4 +36,13 @@ public class CoordinateTest {
 		Integer actual = coordinate1.getDistanceCost();
 		assertEquals(actual, expected);
 	}
+	
+	@Test
+	public void testThatDistanceIsFound(){
+		Coordinate coordinate1 = new Coordinate(1, 1);
+		Coordinate coordinate2 = new Coordinate(1, 2);
+		Integer distance = coordinate1.heuristicCostEstimate(coordinate2);
+		Integer expected = 1;
+		assertTrue(distance.equals(expected));
+	}
 }

@@ -19,10 +19,24 @@ public class MazeSolver {
 		
 		Integer currentDistanceCost = 0;
 		Integer currentHeuristicCost = currentDistanceCost + startingPoint.heuristicCostEstimate(endingPoint);
+		startingPoint.setHeuristicCost(currentHeuristicCost);
 		
 		Integer count = 0;
+		
 		while (count < 5){
-			Coordinate currentNode = nodesToVisit.get(0);
+			
+			Integer min = 1000;
+			Coordinate minCoordinate = null;
+			
+			for (Coordinate coordinate : nodesToVisit){
+				Integer cost = coordinate.getHeuristicCost();
+				if (cost < min){
+					minCoordinate = coordinate;
+					min = cost;
+				}
+			}
+			Coordinate currentNode = minCoordinate;
+//			Coordinate currentNode = nodesToVisit.get(0);
 			int heuristicCostScore = currentNode.heuristicCostEstimate(endingPoint);
 			System.out.println(heuristicCostScore);
 			currentNode.setHeuristicCost(heuristicCostScore);

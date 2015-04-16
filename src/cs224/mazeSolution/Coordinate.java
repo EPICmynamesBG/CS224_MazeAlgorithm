@@ -26,11 +26,6 @@ public class Coordinate {
 		this(x, y, 0, 0);
 	}
 	
-	public int[] getCoor(){
-		int[] result = {this.x , this.y };
-		return result;
-	}
-	
 	public Integer getXCoordinate(){
 		return this.x;
 	}
@@ -96,7 +91,7 @@ public class Coordinate {
 		this.heuristicCost = value;
 	}
 	
-	public int getHeuristicValue(){
+	public int getHeuristicCost(){
 		return this.heuristicCost;
 	}
 	
