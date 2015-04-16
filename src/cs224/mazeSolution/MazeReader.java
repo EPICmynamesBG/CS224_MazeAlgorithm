@@ -21,7 +21,6 @@ public class MazeReader {
 	    } finally {
 	        scanner.close();
 	    }
-	    System.out.println(maze.toString());
 		return maze;
 	}
 	
