@@ -60,20 +60,18 @@ public class MazeSolver {
 				}
 			}
 			navigatedNodes.add(currentNode);
-//			System.out.println(nodesToVisit + " Nodes to Visit");
-//			System.out.println(navigatedNodes + " Navigated Nodes");
-//			System.out.println(visitedNodes + " Visited Nodes");
-//			nodesToVisit.clear();
 		}
 	}
 	
 	public ArrayList<Coordinate> reconstructPath(ArrayList<Coordinate> navigatedNodes, Coordinate current){
 		ArrayList <Coordinate> totalPath = new ArrayList<Coordinate>();
 		totalPath.add(current);
-		while (navigatedNodes.contains(current)){
-//			current = navigatedNodes.get();
+		
+		while (current.getParent() != null){
+			current = current.getParent();
 			totalPath.add(current);
 		}
+		System.out.println(totalPath);
 		return totalPath;
-	}
+		}
 }
