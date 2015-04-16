@@ -54,17 +54,17 @@ public class Coordinate {
 	
 	public ArrayList<Coordinate> getNeighborNodes(Maze maze){
 		ArrayList<Coordinate> neighborNodes = new ArrayList<>();
-		System.out.println(maze.isMazeValue(this.getLeftCoordinate()) + " HELLO");
-		if (maze.getMazeValue(this.getLeftCoordinate()) != 1 && maze.isMazeValue(this.getLeftCoordinate())){
+		
+		if (maze.getMazeValue(this.getLeftCoordinate()) != 1){
 			neighborNodes.add(this.getLeftCoordinate());	
 		}
-		if (maze.getMazeValue(this.getRightCoordinate()) != 1 && maze.isMazeValue(this.getLeftCoordinate())){
+		if (maze.getMazeValue(this.getRightCoordinate()) != 1){
 			neighborNodes.add(this.getRightCoordinate());
 		}
-		if (maze.getMazeValue(this.getAboveCoordinate()) != 1 && maze.isMazeValue(this.getLeftCoordinate())){
+		if (maze.getMazeValue(this.getAboveCoordinate()) != 1){
 			neighborNodes.add(this.getAboveCoordinate());
 		}
-		if (maze.getMazeValue(this.getBelowCoordinate()) != 1 && maze.isMazeValue(this.getLeftCoordinate())){
+		if (maze.getMazeValue(this.getBelowCoordinate()) != 1){
 			neighborNodes.add(this.getBelowCoordinate());
 		}
 		return neighborNodes;
@@ -118,11 +118,11 @@ public class Coordinate {
         return String.format("Coordinate(%s, %s)", x, y);
     }
     
-    public boolean equals(Coordinate other) {
-        if (this.x == other.x && this.y == other.y){
-        	return true;
-        }
-    	return false;
+    @Override
+    public boolean equals(Object other) {
+    	if (!(other instanceof Coordinate)) return false;
+    	Coordinate otherCoordinate = (Coordinate) other;
+    	return (this.x == otherCoordinate.x && this.y == otherCoordinate.y);
     }
     
     @Override

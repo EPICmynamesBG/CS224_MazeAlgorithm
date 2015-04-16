@@ -4,11 +4,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 import cs224.mazeSolution.Coordinate;
+import cs224.mazeSolution.Maze;
+import cs224.mazeSolution.MazeReader;
 
 public class CoordinateTest {
+	
+	MazeReader reader = new MazeReader();
 	
 	public CoordinateTest(){
 		
@@ -44,5 +50,14 @@ public class CoordinateTest {
 		Integer distance = coordinate1.heuristicCostEstimate(coordinate2);
 		Integer expected = 1;
 		assertTrue(distance.equals(expected));
+	}
+	
+	@Test
+	public void testGetNeighborNodes() throws IOException{
+		Maze maze = reader.readFile("OutFile.txt");
+		Coordinate coordinate1 = new Coordinate(1, 1);
+		coordinate1.getNeighborNodes(maze);
+		System.out.println(coordinate1.getNeighborNodes(maze));
+		assertTrue(true);
 	}
 }
