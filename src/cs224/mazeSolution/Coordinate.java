@@ -70,6 +70,11 @@ public class Coordinate {
 		return neighborNodes;
 	}
 	
+	public void calculateMovementCost(Coordinate current){
+		Integer cost = current.movementCost;
+		setMovementCost(cost+10);
+	}
+	
 	public Integer getMovementCost(){
 		return this.movementCost;
 	}
