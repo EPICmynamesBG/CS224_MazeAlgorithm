@@ -1,7 +1,6 @@
 package cs224.mazeSolution;
 
 import java.util.ArrayList;
-import cs224.mazeSolution.MazeSolver;
 
 public class Coordinate {
 	
@@ -70,12 +69,17 @@ public class Coordinate {
 		return neighborNodes;
 	}
 	
+	public void calculateMovementCost(Coordinate current){ //requires maze current point Coor
+		Integer cost = current.movementCost;
+		setMovementCost(cost+10);
+	}
+	
 	public Integer getMovementCost(){
 		return this.movementCost;
 	}
 	
-	public void setMovementCost(Integer distanceCost){
-		this.movementCost = distanceCost;
+	public void setMovementCost(Integer movementCost){
+		this.movementCost = movementCost;
 	}
 		
 	public int getMazeIntAtCoor(int[][] maze){	
@@ -129,8 +133,6 @@ public class Coordinate {
     public int hashCode() {
         return this.x + this.y * 256;
     }
-    
-	
 
 	public ArrayList<Coordinate> getNeighbors() {
 		return neighbors;
