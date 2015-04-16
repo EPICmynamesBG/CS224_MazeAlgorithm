@@ -1,18 +1,20 @@
 package cs224.mazeSolution;
 
 import java.util.ArrayList;
+import cs224.mazeSolution.MazeSolver;
 
 public class Coordinate {
 	
 	private int x, y, value, heuristicCost;
     private ArrayList<Coordinate> neighbors = new ArrayList<>();
-    public Integer distanceCost = 0;
+    public Integer movementCost;
 		
     Coordinate(int x, int y, int value) {
         this.x = x;
         this.y = y;
         this.value = value;
         this.heuristicCost = 0;
+        this.movementCost = 0;
     }
     
     Coordinate(int x, int y, int value, int heuristicCost){
@@ -20,6 +22,7 @@ public class Coordinate {
         this.y = y;
         this.value = value;
         this.heuristicCost = heuristicCost;
+        this.movementCost=0;
     }
     
 	public Coordinate(int x, int y){
@@ -67,12 +70,12 @@ public class Coordinate {
 		return neighborNodes;
 	}
 	
-	public Integer getDistanceCost(){
-		return this.distanceCost;
+	public Integer getMovementCost(){
+		return this.movementCost;
 	}
 	
-	public void setDistanceCost(Integer distanceCost){
-		this.distanceCost = distanceCost;
+	public void setMovementCost(Integer distanceCost){
+		this.movementCost = distanceCost;
 	}
 		
 	public int getMazeIntAtCoor(int[][] maze){	
@@ -95,6 +98,12 @@ public class Coordinate {
 		return this.heuristicCost;
 	}
 	
+	public int heuristicCostEstimate(Coordinate goal){
+		int cost = (int) Math.sqrt(Math.pow(this.x - goal.x, 2) + Math.pow(this.y - goal.y, 2));
+		setHeuristicCost(cost);
+		return cost;
+	}
+	
     public void addNeighbor(Coordinate other) {
         if (!this.getNeighbors().contains(other)) { // avoid duplicates
             this.getNeighbors().add(other);
@@ -109,11 +118,11 @@ public class Coordinate {
         return String.format("Coordinate(%s, %s)", x, y);
     }
     
-    @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof Coordinate)) return false;
-        Coordinate otherCoordinate = (Coordinate) other;
-        return (this.x == otherCoordinate.x && this.y == otherCoordinate.y);
+    public boolean equals(Coordinate other) {
+        if (this.x == other.x && this.y == other.y){
+        	return true;
+        }
+    	return false;
     }
     
     @Override
@@ -121,10 +130,7 @@ public class Coordinate {
         return this.x + this.y * 256;
     }
     
-	public int heuristicCostEstimate(Coordinate goal){
-		int cost = (int) Math.sqrt(Math.pow(this.x - goal.x, 2) + Math.pow(this.y - goal.y, 2));
-		return cost;
-	}
+	
 
 	public ArrayList<Coordinate> getNeighbors() {
 		return neighbors;
@@ -133,4 +139,6 @@ public class Coordinate {
 	public void setNeighbors(ArrayList<Coordinate> neighbors) {
 		this.neighbors = neighbors;
 	}
+	
+	
 }
