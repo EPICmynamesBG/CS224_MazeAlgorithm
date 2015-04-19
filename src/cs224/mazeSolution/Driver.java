@@ -15,6 +15,8 @@ public class Driver {
 		MazeSolver solver = new MazeSolver();
 		Maze solvedMaze = solver.solve(maze);
 		System.out.println(solvedMaze);
+		
+		MazeWriter writer = new MazeWriter();
+		writer.writeFile(solvedMaze);
 	}
-
 }
