@@ -246,7 +246,7 @@ public class Maze {
   public static void printMazeToTextFile(String maze, String filePath){
 	  try {
 	      PrintStream out = new PrintStream(new FileOutputStream(
-	    		  filePath+"OutFile.txt"));
+	    		  filePath+"Maze.txt"));
 	      out.println(maze);
 
 	      out.close();
