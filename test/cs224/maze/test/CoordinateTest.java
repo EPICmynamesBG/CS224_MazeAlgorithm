@@ -57,7 +57,6 @@ public class CoordinateTest {
 		Maze maze = reader.readFile("OutFile.txt");
 		Coordinate coordinate1 = new Coordinate(1, 1);
 		coordinate1.getNeighborNodes(maze);
-		System.out.println(coordinate1.getNeighborNodes(maze));
 		assertTrue(true);
 	}
 }
