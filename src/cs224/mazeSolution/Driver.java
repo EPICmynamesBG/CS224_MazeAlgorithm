@@ -13,7 +13,8 @@ public class Driver {
 		MazeReader reader = new MazeReader();
 		Maze maze = reader.readFile(filePath);
 		MazeSolver solver = new MazeSolver();
-		solver.solve(maze);
+		Maze solvedMaze = solver.solve(maze);
+		System.out.println(solvedMaze);
 	}
 
 }

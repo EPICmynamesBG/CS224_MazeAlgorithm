@@ -10,7 +10,7 @@ public class MazeSolver {
 	private ArrayList<Coordinate> navigatedNodes = new ArrayList<Coordinate>();
 	private final Integer DISTANCE_COST = 10;
 	
-	public void solve(Maze maze) {
+	public Maze solve(Maze maze) {
 		uneditedMaze = maze;
 		Coordinate startingPoint = new Coordinate(1,1);
 		Coordinate endingPoint = new Coordinate(39, 79);
@@ -61,6 +61,7 @@ public class MazeSolver {
 			}
 			navigatedNodes.add(currentNode);
 		}
+		return uneditedMaze;
 	}
 	
 	public ArrayList<Coordinate> reconstructPath(ArrayList<Coordinate> navigatedNodes, Coordinate current){
@@ -69,9 +70,9 @@ public class MazeSolver {
 		
 		while (current.getParent() != null){
 			current = current.getParent();
-			totalPath.add(current);
+			totalPath.add(current);	
+			uneditedMaze.addValue(current, uneditedMaze.getMazeValue(current) + 2);
 		}
-		System.out.println(totalPath);
 		return totalPath;
 		}
 }
