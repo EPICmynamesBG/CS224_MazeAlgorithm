@@ -1,5 +1,6 @@
 package cs224.mazeSolution;
 
+import cs224.mazeCreator.MazeSize;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -24,7 +25,7 @@ public class MazeWriter {
 				lineString += "YO";
 			}
 			
-			if(count.equals(80)){
+			if(count.equals(MazeSize.WIDTH-1)){
 				writer.println(lineString);
 				count = 0;
 				lineString = "";

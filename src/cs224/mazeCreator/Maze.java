@@ -1,5 +1,6 @@
 package cs224.mazeCreator;
 
+import cs224.mazeCreator.MazeSize;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -259,7 +260,7 @@ public class Maze {
   // run it
   public static void main(String[] args) {
       String fileOutputPath = ""; //leaving blank will place in project folder
-	  Maze maze = new Maze(20);
+	  Maze maze = new Maze(MazeSize.BASE_VALUE);
       //maze.solve(); //uses A* algorithm!!
       //System.out.print(maze);
       printMazeToTextFile(maze.toString(), fileOutputPath);

@@ -1,5 +1,6 @@
 package cs224.mazeSolution;
 
+import cs224.mazeCreator.MazeSize;
 import java.util.ArrayList;
 import cs224.mazeSolution.Coordinate;
 
@@ -11,9 +12,10 @@ public class MazeSolver {
 	private final Integer DISTANCE_COST = 10;
 	
 	public Maze solve(Maze maze) {
+		System.out.println("END_Y: "+MazeSize.END_Y+" END_x: "+MazeSize.END_X);
 		uneditedMaze = maze;
-		Coordinate startingPoint = new Coordinate(1,1);
-		Coordinate endingPoint = new Coordinate(39, 79);
+		Coordinate startingPoint = new Coordinate(MazeSize.START_Y ,MazeSize.START_X );
+		Coordinate endingPoint = new Coordinate(MazeSize.END_Y, MazeSize.END_X);
 	
 		nodesToVisit.add(0, startingPoint);
 		
