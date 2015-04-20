@@ -16,6 +16,8 @@ A repository for the CS224 Algorithms project.
   <li>2. Under src/cs224.mazeCreator, run Maze.java. This will generate a maze to Output.txt. *</li>
   <li>3. Under src/cs224.mazeSolution, run Driver.java. This will solve the maze and write the solved maze into SolvedMaze.txt.</li>
 </ul>
+<p>Note: To change the maze size, go into MazeSize.java and change BASE_VALUE to another positive int value. Remember to generate a new maze with this new value before running the maze solver.</p>
+
 <p>* Disclaimer: this code was found publicly online and was modified for our uses. We do not claim rights over creating it.</p>
 
 <h4> Contributing Developers </h4>
